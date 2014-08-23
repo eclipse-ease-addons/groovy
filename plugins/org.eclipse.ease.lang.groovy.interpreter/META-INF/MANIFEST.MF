@@ -5,5 +5,5 @@ Bundle-SymbolicName: org.eclipse.ease.lang.groovy.interpreter;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: Code & me
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Require-Bundle: org.groovy;bundle-version="2.1.6",
- org.eclipse.ease;bundle-version="0.1.0"
+Require-Bundle: org.eclipse.ease;bundle-version="0.1.0",
+ org.codehaus.groovy;bundle-version="2.3.6"
