@@ -5,6 +5,7 @@ Bundle-SymbolicName: org.codehaus.groovy
 Bundle-Version: 2.3.6
 Bundle-ClassPath: .
 Bundle-Vendor: Codehaus.org
+Eclipse-BuddyPolicy: global
 Export-Package: groovy.beans,
  groovy.grape,
  groovy.inspect,

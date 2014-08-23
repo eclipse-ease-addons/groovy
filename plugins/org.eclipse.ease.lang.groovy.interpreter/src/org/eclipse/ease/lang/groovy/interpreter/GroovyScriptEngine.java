@@ -101,7 +101,7 @@ public class GroovyScriptEngine extends AbstractScriptEngine {
 
 	@Override
 	public String getSaveVariableName(final String name) {
-		throw new RuntimeException("not implemented");
+		return GroovyModuleWrapper.getSaveName(name);
 	}
 
 	@Override

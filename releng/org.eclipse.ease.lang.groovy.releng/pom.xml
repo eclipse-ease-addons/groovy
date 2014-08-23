@@ -99,8 +99,13 @@
 	<modules>
 
 		<!-- Modules -->
+		<module>../../plugins/org.eclipse.ease.lang.groovy</module>
+		<module>../../plugins/org.eclipse.ease.lang.groovy.interpreter</module>
+		<module>../../plugins/org.codehaus.groovy</module>
+		<module>../../features/org.eclipse.ease.lang.groovy.feature</module>
 
 		<!-- releng -->
+		<module>../org.eclipse.ease.lang.groovy.releng.p2</module>
 	</modules>
 
 
