@@ -22,7 +22,6 @@ public class GroovyScriptEngine extends AbstractScriptEngine {
 	@Override
 	public void terminateCurrent() {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
@@ -85,33 +84,33 @@ public class GroovyScriptEngine extends AbstractScriptEngine {
 	}
 
 	@Override
-	public void setVariable(final String name, final Object content) {
-		fEngine.setVariable(name, content);
-	}
-
-	@Override
-	public Object getVariable(final String name) {
+	protected Object internalGetVariable(final String name) {
 		return fEngine.getVariable(name);
 	}
 
 	@Override
-	public boolean hasVariable(final String name) {
+	protected Map<String, Object> internalGetVariables() {
+		throw new RuntimeException("not implemented");
+	}
+
+	@Override
+	protected boolean internalHasVariable(final String name) {
 		return false;
+	}
+
+	@Override
+	protected void internalSetVariable(final String name, final Object content) {
+		fEngine.setVariable(name, content);
+	}
+
+	@Override
+	protected Object internalRemoveVariable(final String name) {
+		throw new RuntimeException("not implemented");
 	}
 
 	@Override
 	public String getSaveVariableName(final String name) {
 		return GroovyModuleWrapper.getSaveName(name);
-	}
-
-	@Override
-	public Object removeVariable(final String name) {
-		throw new RuntimeException("not implemented");
-	}
-
-	@Override
-	public Map<String, Object> getVariables() {
-		throw new RuntimeException("not implemented");
 	}
 
 	@Override
