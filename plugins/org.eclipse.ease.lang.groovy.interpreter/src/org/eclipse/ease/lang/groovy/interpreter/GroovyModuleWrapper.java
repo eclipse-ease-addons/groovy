@@ -108,7 +108,7 @@ public class GroovyModuleWrapper extends AbstractModuleWrapper {
 	}
 
 	@Override
-	public String createStaticFieldWrapper(final IEnvironment environment, final Field field) {
+	public String createStaticFieldWrapper(final IEnvironment environment, final String moduleVariable, final Field field) {
 		StringBuilder groovyCode = new StringBuilder();
 		groovyCode.append("import ");
 		groovyCode.append(field.getDeclaringClass().getName());
@@ -116,7 +116,7 @@ public class GroovyModuleWrapper extends AbstractModuleWrapper {
 
 		groovyCode.append(getSaveVariableName(field.getName()));
 		groovyCode.append(" = ");
-		groovyCode.append(field.getDeclaringClass().getName());
+		groovyCode.append(moduleVariable);
 		groovyCode.append(".");
 		groovyCode.append(field.getName());
 		groovyCode.append(";\n");
