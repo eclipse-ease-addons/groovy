@@ -41,12 +41,11 @@ public class GroovyScriptEngine extends AbstractScriptEngine {
 
 		if (fEngine != null)
 			fEngine.setProperty("out", getOutputStream());
-
 	}
 
 	@Override
 	public void setErrorStream(final OutputStream errorStream) {
-		super.setOutputStream(errorStream);
+		super.setErrorStream(errorStream);
 
 		if (fEngine != null)
 			fEngine.setProperty("err", getErrorStream());
@@ -86,22 +85,22 @@ public class GroovyScriptEngine extends AbstractScriptEngine {
 
 	@Override
 	protected Object internalGetVariable(final String name) {
-		return fEngine.getVariable(name);
+		return fEngine.getContext().getVariable(name);
 	}
 
 	@Override
 	protected Map<String, Object> internalGetVariables() {
-		throw new RuntimeException("not implemented");
+		return fEngine.getContext().getVariables();
 	}
 
 	@Override
 	protected boolean internalHasVariable(final String name) {
-		return false;
+		return fEngine.getContext().hasVariable(name);
 	}
 
 	@Override
 	protected void internalSetVariable(final String name, final Object content) {
-		fEngine.setVariable(name, content);
+		fEngine.getContext().setVariable(name, content);
 	}
 
 	@Override
