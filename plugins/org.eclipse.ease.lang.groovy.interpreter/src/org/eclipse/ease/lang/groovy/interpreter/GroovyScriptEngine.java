@@ -1,7 +1,5 @@
 package org.eclipse.ease.lang.groovy.interpreter;
 
-import groovy.lang.GroovyShell;
-
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
@@ -10,6 +8,9 @@ import java.util.Map;
 
 import org.eclipse.ease.AbstractScriptEngine;
 import org.eclipse.ease.Script;
+import org.eclipse.ease.lang.groovy.GroovyHelper;
+
+import groovy.lang.GroovyShell;
 
 public class GroovyScriptEngine extends AbstractScriptEngine {
 
@@ -110,7 +111,7 @@ public class GroovyScriptEngine extends AbstractScriptEngine {
 
 	@Override
 	public String getSaveVariableName(final String name) {
-		return GroovyModuleWrapper.getSaveName(name);
+		return GroovyHelper.getSaveName(name);
 	}
 
 	@Override

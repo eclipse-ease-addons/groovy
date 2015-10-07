@@ -10,9 +10,9 @@
  *******************************************************************************/
 package org.eclipse.ease.lang.groovy;
 
-import org.eclipse.ease.AbstractHeaderParser;
+import org.eclipse.ease.AbstractCodeParser;
 
-public class GroovyHeaderParser extends AbstractHeaderParser {
+public class GroovyCodeParser extends AbstractCodeParser {
 
 	private static final String LINE_COMMENT = "//";
 	private static final String BLOCK_COMMENT_START = "/*";

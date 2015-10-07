@@ -13,10 +13,6 @@
                scriptType="Groovy">
          </binding>
       </engine>
-      <moduleWrapper
-            class="org.eclipse.ease.lang.groovy.interpreter.GroovyModuleWrapper"
-            engineID="org.eclipse.ease.engine.groovy">
-      </moduleWrapper>
       <launchExtension
             class="org.eclipse.ease.lang.groovy.interpreter.GroovyEnvironementBootStrapper"
             engineID="org.eclipse.ease.engine.groovy">

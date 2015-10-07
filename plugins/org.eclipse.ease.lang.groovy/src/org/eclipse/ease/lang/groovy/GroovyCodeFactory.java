@@ -1,18 +1,17 @@
-package org.eclipse.ease.lang.groovy.interpreter;
+package org.eclipse.ease.lang.groovy;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Pattern;
 
-import org.eclipse.ease.Activator;
 import org.eclipse.ease.Logger;
-import org.eclipse.ease.modules.AbstractModuleWrapper;
+import org.eclipse.ease.modules.AbstractCodeFactory;
 import org.eclipse.ease.modules.IEnvironment;
 import org.eclipse.ease.modules.IScriptFunctionModifier;
+import org.eclipse.ease.modules.ModuleHelper;
 
-public class GroovyModuleWrapper extends AbstractModuleWrapper {
+public class GroovyCodeFactory extends AbstractCodeFactory {
 
 	public static List<String> RESERVED_KEYWORDS = new ArrayList<String>();
 
@@ -77,7 +76,7 @@ public class GroovyModuleWrapper extends AbstractModuleWrapper {
 	}
 
 	private static boolean isValidMethodName(final String methodName) {
-		return isSaveName(methodName) && !RESERVED_KEYWORDS.contains(methodName);
+		return GroovyHelper.isSaveName(methodName) && !RESERVED_KEYWORDS.contains(methodName);
 	}
 
 	@Override
@@ -131,7 +130,7 @@ public class GroovyModuleWrapper extends AbstractModuleWrapper {
 
 	@Override
 	public String getSaveVariableName(final String variableName) {
-		return getSaveName(variableName);
+		return GroovyHelper.getSaveName(variableName);
 	}
 
 	private StringBuilder verifyParameters(final List<Parameter> parameters) {
@@ -160,7 +159,7 @@ public class GroovyModuleWrapper extends AbstractModuleWrapper {
 		StringBuilder groovyCode = new StringBuilder();
 
 		// parse parameters
-		List<Parameter> parameters = parseParameters(method);
+		List<Parameter> parameters = ModuleHelper.getParameters(method);
 
 		// build parameter string
 		StringBuilder parameterList = new StringBuilder();
@@ -191,8 +190,8 @@ public class GroovyModuleWrapper extends AbstractModuleWrapper {
 		// build function declarations
 		for (String name : getMethodNames(method)) {
 			if (!isValidMethodName(name)) {
-				Logger.logError("The method name \"" + name + "\" from the module \"" + moduleVariable + "\" can not be wrapped because it's name is reserved",
-						Activator.PLUGIN_ID);
+				Logger.error(PluginConstants.PLUGIN_ID,
+						"The method name \"" + name + "\" from the module \"" + moduleVariable + "\" can not be wrapped because it's name is reserved");
 
 			} else if (!name.isEmpty()) {
 				groovyCode.append(name).append(" = { ").append(parameterList).append(" ->\n");
@@ -204,35 +203,4 @@ public class GroovyModuleWrapper extends AbstractModuleWrapper {
 		return groovyCode.toString();
 	}
 
-	private static boolean isSaveName(final String identifier) {
-		return Pattern.matches("[a-zA-Z_$][a-zA-Z0-9_$]*", identifier);
-	}
-
-	public static String getSaveName(final String identifier) {
-		// check if name is already valid
-		if (isSaveName(identifier))
-			return identifier;
-
-		// not valid, convert string to valid format
-		final StringBuilder buffer = new StringBuilder(identifier.replaceAll("[^a-zA-Z0-9]", "_"));
-
-		// remove '_' at the beginning
-		while ((buffer.length() > 0) && (buffer.charAt(0) == '_'))
-			buffer.deleteCharAt(0);
-
-		// remove trailing '_'
-		while ((buffer.length() > 0) && (buffer.charAt(buffer.length() - 1) == '_'))
-			buffer.deleteCharAt(buffer.length() - 1);
-
-		// check for valid first character
-		if (buffer.length() > 0) {
-			final char start = buffer.charAt(0);
-			if ((start < 65) || ((start > 90) && (start < 97)) || (start > 122))
-				buffer.insert(0, '_');
-		} else
-			// buffer is empty
-			buffer.insert(0, '_');
-
-		return buffer.toString();
-	}
 }

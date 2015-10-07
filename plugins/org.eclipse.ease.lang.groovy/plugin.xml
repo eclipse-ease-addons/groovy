@@ -15,6 +15,8 @@
    <extension
          point="org.eclipse.ease.scriptType">
       <scriptType
+            codeFactory="org.eclipse.ease.lang.groovy.GroovyCodeFactory"
+            codeParser="org.eclipse.ease.lang.groovy.GroovyCodeParser"
             defaultExtension="groovy"
             headerParser="org.eclipse.ease.lang.groovy.GroovyHeaderParser"
             name="Groovy">
