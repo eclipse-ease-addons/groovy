@@ -107,7 +107,7 @@ public class GroovyCodeFactory extends AbstractCodeFactory {
 	}
 
 	@Override
-	public String createStaticFieldWrapper(final IEnvironment environment, final String moduleVariable, final Field field) {
+	public String createFinalFieldWrapper(final IEnvironment environment, final String moduleVariable, final Field field) {
 		StringBuilder groovyCode = new StringBuilder();
 		groovyCode.append("import ");
 		groovyCode.append(field.getDeclaringClass().getName());
