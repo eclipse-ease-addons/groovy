@@ -8,6 +8,7 @@ import java.util.Map;
 
 import org.eclipse.ease.AbstractScriptEngine;
 import org.eclipse.ease.Script;
+import org.eclipse.ease.ScriptEngineException;
 import org.eclipse.ease.lang.groovy.GroovyHelper;
 
 import groovy.lang.GroovyShell;
@@ -26,13 +27,11 @@ public class GroovyScriptEngine extends AbstractScriptEngine {
 	}
 
 	@Override
-	protected boolean setupEngine() {
+	protected void setupEngine() throws ScriptEngineException {
 		fEngine = new GroovyShell();
 
 		setOutputStream(getOutputStream());
 		setErrorStream(getErrorStream());
-
-		return true;
 	}
 
 	@Override
@@ -52,9 +51,7 @@ public class GroovyScriptEngine extends AbstractScriptEngine {
 	}
 
 	@Override
-	protected boolean teardownEngine() {
-		// TODO Auto-generated method stub
-		return true;
+	protected void teardownEngine() throws ScriptEngineException {
 	}
 
 	@Override
