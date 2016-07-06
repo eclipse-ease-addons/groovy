@@ -26,13 +26,11 @@ public class GroovyScriptEngine extends AbstractScriptEngine {
 	}
 
 	@Override
-	protected boolean setupEngine() {
+	protected void setupEngine() {
 		fEngine = new GroovyShell();
 
 		setOutputStream(getOutputStream());
 		setErrorStream(getErrorStream());
-
-		return true;
 	}
 
 	@Override
@@ -52,9 +50,7 @@ public class GroovyScriptEngine extends AbstractScriptEngine {
 	}
 
 	@Override
-	protected boolean teardownEngine() {
-		// TODO Auto-generated method stub
-		return true;
+	protected void teardownEngine() {
 	}
 
 	@Override
